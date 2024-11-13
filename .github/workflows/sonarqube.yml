@@ -1,0 +1,38 @@
+name: SonarQube analysis
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  pull-requests: read # permet à SonarQube d'ajouter les résultats d'analyse aux PRs
+
+jobs:
+  Analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Analyze with SonarQube
+        uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+        env:
+          GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: "sqp_59bb24d0fbf4741fa905ecafbd4ed9752483bf28" # Remplacer avec votre token SonarQube
+          SONAR_HOST_URL: "http://sonarqube.209.38.185.24.nip.io" # Remplacer avec votre URL SonarQube
+        with:
+          args: >
+            -Dsonar.projectKey=sonarqube-deploy
+            -Dsonar.projectName=sonarqube-deploy
+            -Dsona.projectVersion=1.0
+            -Dsonar.sources=../../
+            -Dsonar.language=js
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.exclusions=**/node_modules/**,**/test/**
