@@ -31,8 +31,9 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: "sqp_59bb24d0fbf4741fa905ecafbd4ed9752483bf28" # Remplacer avec votre token SonarQube
-          SONAR_HOST_URL: "http://sonarqube.209.38.185.24.nip.io" # Remplacer avec votre URL SonarQube
+          SONAR_TOKEN: "sqp_59bb24d0fbf4741fa905ecafbd4ed9752483bf28"
+          SONAR_HOST_URL: "http://sonarqube.209.38.185.24.nip.io"
+          JAVA_HOME: /opt/java/openjdk # Ajoutez cette ligne pour spécifier JAVA_HOME
         with:
           args: >
             -Dsonar.projectKey=sonarqube-deploy
