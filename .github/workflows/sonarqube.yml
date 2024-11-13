@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  pull-requests: read # permet à SonarQube d'ajouter les résultats d'analyse aux PRs
+  pull-requests: read
 
 jobs:
   Analysis:
@@ -18,13 +18,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
       - name: Install dependencies
         run: npm install
 
       - name: Analyze with SonarQube
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
         env:
-          GITHUB_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: "sqp_59bb24d0fbf4741fa905ecafbd4ed9752483bf28" # Remplacer avec votre token SonarQube
           SONAR_HOST_URL: "http://sonarqube.209.38.185.24.nip.io" # Remplacer avec votre URL SonarQube
         with:
