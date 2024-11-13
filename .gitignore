@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables file
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+.docker/
+
+# MacOS files
+.DS_Store
+
+# Other
+coverage/
+dist/
