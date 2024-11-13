@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  pull-requests: read
+  pull-requests: read # Allows SonarQube to add comments to PRs with analysis results
 
 jobs:
   Analysis:
@@ -24,22 +24,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Analyze with SonarQube
-        uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+        uses: SonarSource/sonarqube-scan-action@v1.1.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: "sqp_59bb24d0fbf4741fa905ecafbd4ed9752483bf28"
-          SONAR_HOST_URL: "http://sonarqube.209.38.185.24.nip.io"
-          JAVA_HOME: /opt/java/openjdk # Ajoutez cette ligne pour spécifier JAVA_HOME
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to retrieve PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}     # SonarQube token, add this to your repo secrets
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # SonarQube URL, add this to your repo secrets
         with:
           args: >
-            -Dsonar.projectKey=sonarqube-deploy
-            -Dsonar.projectName=sonarqube-deploy
-            -Dsona.projectVersion=1.0
-            -Dsonar.sources=../../
+            -Dsonar.projectKey=your_project_key
+            -Dsonar.sources=.
             -Dsonar.language=js
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.exclusions=**/node_modules/**,**/test/**
