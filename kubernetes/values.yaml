@@ -1,0 +1,38 @@
+# values.yaml
+
+# Utilisez Persistent Volume pour stocker les données
+persistence:
+  enabled: true
+  storageClass: "do-block-storage"  # Utilisez un StorageClass existant dans votre cluster
+  size: 10Gi
+
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  hosts:
+    - name: sonarqube.209.38.185.24.nip.io   # Remplacez par votre domaine ou IP avec nip.io
+      path: /
+      pathType: Prefix
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  tls: []  # Ajouter TLS si nécessaire
+
+# Configuration des ressources pour PostgreSQL
+postgresql:
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "200m"
+      memory: "512Mi"
+
+# Configuration des ressources pour SonarQube
+sonarqube:
+  resources:
+    requests:
+      cpu: "300m"
+      memory: "500Mi"
+    limits:
+      cpu: "500m"
+      memory: "750Mi"

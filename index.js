@@ -16,11 +16,8 @@ app.get('/api/quote', async (req, res) => {
     }
 })
 
-// eslint-disable-next-line no-undef
-if (require.main === module) {
-    app.listen(3000, () => {
-        console.log('Server is running on http://localhost:3000')
-    })
-}
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000')
+})
 
 export default app
