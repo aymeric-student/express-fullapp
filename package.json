@@ -7,10 +7,7 @@
     "dev": "nodemon index.js",
     "sonar": "npx sonar-scanner -Dsonar.settings=./sonar-project.properties",
     "lint": "eslint . -f json -o eslint-report.json",
-    "lint:report": "eslint -f checkstyle -o eslint-report.xml .",
-    "lint:report-test": "eslint -f node_modules/eslint-formatter-sonarqube -o eslint-report-sonarqube.json .",
-    "test:coverage": "vitest run --coverage",
-    "lint:fix": "eslint . --fix"
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
