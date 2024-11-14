@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
+    "test": "vitest run",
     "sonar": "npx sonar-scanner -Dsonar.settings=./sonar-project.properties",
     "lint": "eslint . -f json -o eslint-report.json",
     "test:coverage": "vitest run --coverage"
