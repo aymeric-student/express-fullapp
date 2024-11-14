@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "sonar": "npx sonar-scanner -Dsonar.settigs=./sonar-project.properties",
-    "test": "vitest run",
+    "sonar": "npx sonar-scanner -Dsonar.settings=./sonar-project.properties",
+    "lint": "eslint . -f json -o eslint-report.json",
+    "lint:report": "eslint -f checkstyle -o eslint-report.xml .",
+    "lint:report-test": "eslint -f node_modules/eslint-formatter-sonarqube -o eslint-report-sonarqube.json .",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "keywords": [],
@@ -27,6 +28,7 @@
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-formatter-sonarqube": "^1.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "supertest": "^7.0.0",
