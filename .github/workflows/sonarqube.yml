@@ -22,8 +22,14 @@ jobs:
       - name: Installation des dépendances
         run: npm install
 
-      - name: Lancer les tests
-        run: npm test
+      - name: Générer la couverture de test
+        run: npm run test:coverage
+
+      - name: Sauvegarder le rapport de couverture
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
 
   quality:
     name: Analyse de qualité avec SonarQube
@@ -35,6 +41,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Récupérer le rapport de couverture
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage
 
       - name: Configuration de Java 17
         uses: actions/setup-java@v4
