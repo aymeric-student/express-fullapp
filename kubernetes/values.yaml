@@ -16,7 +16,7 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /
   tls: []
 
- postgresql:
+postgresql:
   resources:
     requests:
       cpu: "100m"

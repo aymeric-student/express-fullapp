@@ -1,4 +1,3 @@
-// eslint-disable-next-line node/no-unpublished-import
 import request from 'supertest'
 import { describe, expect, test } from 'vitest'
 import nock from 'nock'
