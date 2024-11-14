@@ -28,7 +28,7 @@ jobs:
   quality:
     name: Analyse de qualité avec SonarQube
     runs-on: ubuntu-latest
-    needs: test  # Ce job ne s'exécute que si le job 'test' réussit
+    needs: test
 
     steps:
       - name: Checkout du code
